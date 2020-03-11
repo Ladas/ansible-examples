@@ -1,0 +1,30 @@
+---
+- name: Fail based on hostname
+  connection: local
+  strategy: free
+  gather_facts: False
+  hosts: all
+  tasks:
+  - name: "test fail task 1"
+    fail:
+      msg: "Failed task 1"
+    when: "'localhost1' in inventory_hostname"
+  - name: "test fail task 2"
+    fail:
+      msg: "Failed task 2"
+    when: "'localhost2' in inventory_hostname"
+  - name: "test fail task 3"
+    fail:
+      msg: "Failed task 3"
+    when: "'localhost3' in inventory_hostname"
+  - name: "test fail task 4"
+    fail:
+      msg: "Failed task 4"
+    when: "'localhost4' in inventory_hostname"
+  - name: "test fail task 5"
+    fail:
+      msg: "Failed task 5"
+    when: "'localhost5' in inventory_hostname"
+  - debug:
+      msg: "Well done"
+  
