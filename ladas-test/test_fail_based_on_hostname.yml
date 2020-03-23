@@ -4,7 +4,7 @@
   gather_facts: False
   hosts: all
   tasks:
-  - name: "test fail task 1"
+  - name: "test fail task 1, succeeds, task that would fail is skipped"
     fail:
       msg: "Failed task 1"
     when: "'localhost1' in inventory_hostname"
@@ -18,16 +18,29 @@
     until: result2 is not failed
     ignore_errors: yes
   - name: "test fail task 3"
-    fail:
-      msg: "Failed task 4"
-    when: "'localhost3' in inventory_hostname"
+    block:
+      - name: "test fail task 3 fails inside rescue block"
+        fail:
+          msg: "Failed task 4"
+        when: "'localhost3' in inventory_hostname"
+    rescue:
+      - debug:
+          msg: "test fail task 3 rescue message"
   - name: "test fail task 4, unreachable host configured"
     shell: whoami
     when: "'localhost4' in inventory_hostname"
-  - name: "test fail task 5"
+  - name: "test fail task 5, fails on localhost5"
     fail:
       msg: "Failed task 5"
     when: "'localhost5' in inventory_hostname"
+  - name: "test fail task 6, failure ignored but fails on task 7"
+    fail:
+      msg: "Failed task 6"
+    when: "'localhost6' in inventory_hostname"
+  - name: "test fail task 7, fails on localhost6 and localhost7"
+    fail:
+      msg: "Failed task 7"
+    when: "'localhost6' in inventory_hostname or 'localhost7' in inventory_hostname"
   - debug:
       msg: "Well done"
   
