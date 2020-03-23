@@ -9,10 +9,15 @@
     fail:
       msg: "Failed task 1"
     when: "'localhost1' in inventory_hostname"
-  - name: "test fail task 2"
+  - name: "test fail task 2, failure ignored"
     fail:
       msg: "Failed task 2"
     when: "'localhost2' in inventory_hostname"
+    retries: 3
+    delay: 0
+    register: result2
+    until: result2 is not failed
+    ignore_errors: yes
   - name: "test fail task 3"
     fail:
       msg: "Failed task 3"

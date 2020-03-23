@@ -15,8 +15,8 @@
     when: "'localhost2' in inventory_hostname"
     retries: 3
     delay: 0
-    register: result
-    until: result.rc == 0
+    register: result2
+    until: result2 is not failed
     ignore_errors: yes
   - name: "test fail task 3"
     fail:
