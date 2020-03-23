@@ -1,6 +1,5 @@
 ---
 - name: Fail based on hostname
-  connection: local
   strategy: free
   gather_facts: False
   hosts: all
@@ -20,11 +19,10 @@
     ignore_errors: yes
   - name: "test fail task 3"
     fail:
-      msg: "Failed task 3"
-    when: "'localhost3' in inventory_hostname"
-  - name: "test fail task 4"
-    fail:
       msg: "Failed task 4"
+    when: "'localhost3' in inventory_hostname"
+  - name: "test fail task 4, unreachable host configured"
+    shell: whoami
     when: "'localhost4' in inventory_hostname"
   - name: "test fail task 5"
     fail:
