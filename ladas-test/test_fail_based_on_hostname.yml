@@ -51,6 +51,6 @@
     fail:
       msg: "Failed task 8"
     when: "'localhost6' in inventory_hostname or 'localhost7' in inventory_hostname or 'localhost8' in inventory_hostname"
-  - debug:
+  - name: "Finished successfully !!!!!!!!!!!!"
+    debug:
       msg: "Well done"
-  
