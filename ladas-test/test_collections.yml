@@ -1,0 +1,13 @@
+---
+- name: Testing URI manipulation of QRadar
+  hosts: localhost2
+  gather_facts: false
+  collections:
+    - ibm.qradar
+  tasks:
+    - name: create log source
+      qradar_log_source_management:
+        name: "Ansible Collections Example Log Source"
+        type_name: "Linux OS"
+        state: present
+        description: "Ansible Collections Example Log Source Description"
