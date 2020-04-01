@@ -1,4 +1,6 @@
 ---
+roles:
+  - benthomasson.hello_role
 collections:
   # With just the collection name
   - ibm.qradar
