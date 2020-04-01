@@ -2,6 +2,7 @@
 - name: Install, configure and run Sensu agent
   hosts: localhost3
   roles:
+    - benthomasson.hello_role
     - benthomasson.hello_role3
     - sensu.sensu_go.agent
   vars:
