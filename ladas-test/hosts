@@ -1,1 +1,9 @@
-appserver1
+[all]
+localhost1 ansible_connection=local
+localhost2 ansible_connection=local
+localhost3 ansible_connection=local
+localhost4 ansible_connection=local
+localhost5 ansible_connection=local
+localhost6 ansible_connection=local
+localhost7 ansible_connection=local
+localhost8 ansible_connection=local
